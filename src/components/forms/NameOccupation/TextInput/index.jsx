@@ -1,13 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
+/* eslint-disable react/prop-types */
 
-import Label from "../../shared/Label";
+import React from "react";
+
+import Label from "../Label";
 
 const TextInput = ({ updateFields, labelText, value, name, autoFocus }) => {
   return (
     <Label labelText={labelText}>
       <input
-        className="c-input caret-teal-300 selection:bg-orange-500/25"
+        className="c-user-details-input caret-teal-300 selection:bg-yellow-400/25"
         onChange={(e) => updateFields({ [e.target.name]: e.target.value })}
         autoFocus={!!autoFocus}
         spellCheck={false}
@@ -17,14 +18,6 @@ const TextInput = ({ updateFields, labelText, value, name, autoFocus }) => {
       />
     </Label>
   );
-};
-
-TextInput.propTypes = {
-  updateFields: PropTypes.func.isRequired,
-  labelText: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  autoFocus: PropTypes.bool,
 };
 
 export default TextInput;

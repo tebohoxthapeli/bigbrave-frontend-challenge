@@ -1,54 +1,69 @@
 /* eslint-disable react/prop-types */
 
-import React, { useState } from "react";
+import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import FormWrapper from "../../../FormWrapper";
+import DateButton from "./DateButton";
 import MaleIcon from "./icons/MaleIcon";
 import CheckIcon from "./icons/CheckIcon";
-import DateInput from "./inputs/DateInput";
-// import FemaleIcon from "./icons/FemaleIcon";
+import FemaleIcon from "./icons/FemaleIcon";
+import FormWrapper from "../../../FormWrapper";
+import SectionWrapper from "../shared/SectionWrapper";
 
-const GenderDOB = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+const genderOptions = [
+  { title: "male", icon: <MaleIcon /> },
+  { title: "female", icon: <FemaleIcon /> },
+];
 
+const GenderDOB = ({ gender, dob, updateFields }) => {
   return (
     <FormWrapper title="gender and date of birth">
-      <div className="flex gap-12">
-        {[0, 0].map((_, i) => (
-          <label
-            className="flex flex-1 cursor-pointer items-end"
-            key={i}
-          >
-            <input
-              type="radio"
-              name="male"
-              className="hidden"
-            />
+      <SectionWrapper heading="choose your gender">
+        <div className="flex gap-12">
+          {genderOptions.map(({ title, icon }) => (
+            <label
+              className="flex flex-1 cursor-pointer"
+              key={title}
+            >
+              <input
+                checked={gender === title}
+                type="radio"
+                id={title}
+                name="gender"
+                onChange={(e) =>
+                  updateFields({
+                    gender: e.target.checked && e.target.id === "male" ? "male" : "female",
+                  })
+                }
+                className="peer hidden"
+              />
 
-            <div className="relative mt-4 flex w-full items-center justify-center gap-2 rounded-lg border-2 border-orange-500 bg-slate-800 p-8">
-              <CheckIcon />
-              <MaleIcon />
-              <h3 className="h-fit text-2xl text-slate-300">male</h3>
-            </div>
-          </label>
-        ))}
-      </div>
+              <div className="relative mt-4 flex w-full items-center justify-center gap-2 rounded-lg border-2 border-transparent bg-slate-800 p-6 hover:bg-slate-700 peer-checked:border-yellow-400">
+                {gender === title && <CheckIcon />}
+                {icon}
+                <h3 className="h-fit text-xl text-slate-300">{title}</h3>
+              </div>
+            </label>
+          ))}
+        </div>
+      </SectionWrapper>
 
-      <DatePicker
-        selected={selectedDate}
-        onChange={(date) => setSelectedDate(date)}
-        dateFormat="dd/MM/yyyy"
-        maxDate={new Date()}
-        showYearDropdown
-        showMonthDropdown
-        useShortMonthInDropdown
-        dropdownMode="select"
-        fixedHeight
-        yearDropdownItemNumber={120}
-        customInput={<DateInput />}
-      />
+      <SectionWrapper heading="click on the button to select your date of birth">
+        <DatePicker
+          selected={dob}
+          onChange={(date) => updateFields({ dob: date })}
+          dateFormat="dd/MM/yyyy"
+          maxDate={new Date("12/31/2004")}
+          showYearDropdown
+          showMonthDropdown
+          useShortMonthInDropdown
+          dropdownMode="select"
+          fixedHeight
+          yearDropdownItemNumber={120}
+          customInput={<DateButton />}
+        />
+      </SectionWrapper>
     </FormWrapper>
   );
 };

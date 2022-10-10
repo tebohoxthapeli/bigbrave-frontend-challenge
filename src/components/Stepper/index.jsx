@@ -6,13 +6,17 @@ import FavouriteColourForm from "../forms/FavouriteColour";
 
 import { useStepper } from "../../hooks/useStepper";
 
+import BackBtn from "./buttons/BackBtn";
+import ForwardBtn from "./buttons/ForwardBtn";
+import FinishBtn from "./buttons/FinishBtn";
+
 const INITIAL_DATA = {
   fName: "",
   surname: "",
   occupation: "",
-  gender: "",
-  dob: "",
-  favouriteColour: "",
+  gender: "male",
+  dob: new Date("12/31/2004"),
+  favColour: "#f44336",
 };
 
 const Stepper = () => {
@@ -33,8 +37,17 @@ const Stepper = () => {
       updateFields={updateFields}
     />,
 
-    <GenderDOBForm key="genderDOBForm" />,
-    <FavouriteColourForm key="favouriteColorForm" />,
+    <GenderDOBForm
+      key="genderDOBForm"
+      {...data}
+      updateFields={updateFields}
+    />,
+
+    <FavouriteColourForm
+      {...data}
+      updateFields={updateFields}
+      key="favouriteColorForm"
+    />,
   ]);
 
   const onSubmit = (e) => {
@@ -53,6 +66,7 @@ const Stepper = () => {
         onSubmit={onSubmit}
         autoComplete="off"
         autoCorrect="off"
+        className="space-y-6"
       >
         {/* <div className="absolute top-2 right-2">
           {currentStepIndex + 1} / {numOfSteps}
@@ -60,23 +74,22 @@ const Stepper = () => {
 
         {step}
 
-        <div className="mt-8 flex justify-end gap-2">
+        <div className="flex justify-end gap-6 text-white">
           {!isFirstStep && (
-            <button
+            <BackBtn
               type="button"
-              className="border p-2"
               onClick={back}
-            >
-              back
-            </button>
+            />
           )}
 
-          <button
+          {isLastStep ? <FinishBtn type="submit" /> : <ForwardBtn type="submit" />}
+
+          {/* <button
             type="submit"
-            className="border p-2"
+            className="border border-white p-2"
           >
             {isLastStep ? "finish" : "next"}
-          </button>
+          </button> */}
         </div>
       </form>
     </div>

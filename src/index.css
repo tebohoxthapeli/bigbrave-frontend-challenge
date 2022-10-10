@@ -15,9 +15,9 @@
 }
 
 @layer components {
-  .c-input {
+  .c-user-details-input {
     @apply rounded-lg bg-slate-700 px-4 py-2 text-sm tracking-wide text-teal-300 outline-none 
     ring-2 ring-transparent ring-offset-2 ring-offset-slate-900 hover:bg-slate-800 
-    focus:bg-slate-800 focus:ring-orange-500;
+    focus:bg-slate-800 focus:ring-yellow-400;
   }
 }

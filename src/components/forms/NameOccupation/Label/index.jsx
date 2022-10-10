@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
+
 import React from "react";
-import { node, string } from "prop-types";
 
 const Label = ({ children, labelText }) => {
   return (
-    <label className="flex flex-col gap-2 text-slate-300">
+    <label className="flex flex-col gap-2 text-slate-400 focus-within:text-slate-300 hover:text-slate-300">
       <span>
         {labelText} <span className="text-red-400">*</span>
       </span>
@@ -11,11 +12,6 @@ const Label = ({ children, labelText }) => {
       {children}
     </label>
   );
-};
-
-Label.propTypes = {
-  children: node.isRequired,
-  labelText: string.isRequired,
 };
 
 export default Label;

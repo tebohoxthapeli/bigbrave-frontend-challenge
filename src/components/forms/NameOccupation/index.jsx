@@ -2,9 +2,9 @@
 
 import React from "react";
 
-import TextInput from "./inputs/TextInput";
+import Label from "./Label";
+import TextInput from "./TextInput";
 import FormWrapper from "../../../FormWrapper";
-import Label from "../shared/Label";
 
 const NameOccupation = ({ fName, surname, updateFields }) => {
   return (
@@ -25,10 +25,10 @@ const NameOccupation = ({ fName, surname, updateFields }) => {
       />
 
       <Label labelText="occupation">
-        <div className="relative flex after:pointer-events-none after:absolute after:right-0 after:py-2 after:px-4 after:content-['\25BC'] after:hover:text-orange-500">
+        <div className="relative flex after:pointer-events-none after:absolute after:right-0 after:py-2 after:px-4 after:content-['\25BC'] after:hover:text-yellow-400">
           <select
             name="occupation"
-            className="c-input flex-1 cursor-pointer appearance-none"
+            className="c-user-details-input flex-1 cursor-pointer appearance-none"
           >
             {["chef", "developer"].map((occupation, index) => (
               <option
