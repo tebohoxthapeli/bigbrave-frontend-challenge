@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 
-import NameOccupationForm from "../Forms/NameOccupation";
+import GenderDOBForm from "../forms/GenderDOB";
+import NameOccupationForm from "../forms/NameOccupation";
+import FavouriteColourForm from "../forms/FavouriteColour";
+
 import { useStepper } from "../../hooks/useStepper";
-import AccountForm from "../../AccountForm";
-import AddressForm from "../../AddressForm";
 
 const INITIAL_DATA = {
   fName: "",
   surname: "",
-  street: "",
-  city: "",
-  state: "",
-  zip: "",
-  email: "",
-  password: "",
+  occupation: "",
+  gender: "",
+  dob: "",
+  favouriteColour: "",
 };
 
 const Stepper = () => {
@@ -25,24 +24,17 @@ const Stepper = () => {
     });
   };
 
-  const { numOfSteps, currentStepIndex, step, isFirstStep, back, next, isLastStep } = useStepper([
+  // below excluded numOfSteps, currentStepIndex
+
+  const { step, isFirstStep, back, next, isLastStep } = useStepper([
     <NameOccupationForm
-      key="one"
+      key="nameOccupationForm"
       {...data}
       updateFields={updateFields}
     />,
 
-    <AddressForm
-      key="two"
-      {...data}
-      updateFields={updateFields}
-    />,
-
-    <AccountForm
-      key="three"
-      {...data}
-      updateFields={updateFields}
-    />,
+    <GenderDOBForm key="genderDOBForm" />,
+    <FavouriteColourForm key="favouriteColorForm" />,
   ]);
 
   const onSubmit = (e) => {
@@ -54,20 +46,25 @@ const Stepper = () => {
 
     alert("Success");
   };
+
   return (
-    <div className="relative border border-black">
-      <form onSubmit={onSubmit}>
-        <div className="absolute top-2 right-2">
+    <div className="relative mx-auto w-3/5 rounded-2xl bg-slate-900 p-12">
+      <form
+        onSubmit={onSubmit}
+        autoComplete="off"
+        autoCorrect="off"
+      >
+        {/* <div className="absolute top-2 right-2">
           {currentStepIndex + 1} / {numOfSteps}
-        </div>
+        </div> */}
 
         {step}
 
-        <div className="mt-4 flex justify-end gap-2 border">
+        <div className="mt-8 flex justify-end gap-2">
           {!isFirstStep && (
             <button
               type="button"
-              className="border border-black p-2"
+              className="border p-2"
               onClick={back}
             >
               back
@@ -76,7 +73,7 @@ const Stepper = () => {
 
           <button
             type="submit"
-            className="border border-black p-2"
+            className="border p-2"
           >
             {isLastStep ? "finish" : "next"}
           </button>

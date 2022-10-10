@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export const useStepper = (steps) => {
-  const [currentStepIndex, setCurrentStepIndex] = useState(0);
+  const [currentStepIndex, setCurrentStepIndex] = useState(1);
 
   const next = () => {
     setCurrentStepIndex((prev) => {

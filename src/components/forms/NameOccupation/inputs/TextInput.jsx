@@ -1,19 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import Label from "../../shared/Label";
+
 const TextInput = ({ updateFields, labelText, value, name, autoFocus }) => {
   return (
-    <label className="flex flex-col">
-      {labelText}:
+    <Label labelText={labelText}>
       <input
+        className="c-input caret-teal-300 selection:bg-orange-500/25"
         onChange={(e) => updateFields({ [e.target.name]: e.target.value })}
-        className="border border-black"
         autoFocus={!!autoFocus}
+        spellCheck={false}
         value={value}
         name={name}
         required
       />
-    </label>
+    </Label>
   );
 };
 

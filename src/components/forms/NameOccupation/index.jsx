@@ -1,34 +1,48 @@
-import React from "react";
-import { string, func } from "prop-types";
+/* eslint-disable react/prop-types */
 
-import FormWrapper from "../../../FormWrapper";
+import React from "react";
+
 import TextInput from "./inputs/TextInput";
+import FormWrapper from "../../../FormWrapper";
+import Label from "../shared/Label";
 
 const NameOccupation = ({ fName, surname, updateFields }) => {
   return (
-    <FormWrapper title="User Details">
+    <FormWrapper title="user details">
       <TextInput
         updateFields={updateFields}
-        labelText="First Name"
+        labelText="first name"
         value={fName}
         name="fName"
-        autoFocus={true}
+        autoFocus
       />
 
       <TextInput
         updateFields={updateFields}
-        labelText="Surname"
+        labelText="surname"
         value={surname}
         name="surname"
       />
+
+      <Label labelText="occupation">
+        <div className="relative flex after:pointer-events-none after:absolute after:right-0 after:py-2 after:px-4 after:content-['\25BC'] after:hover:text-orange-500">
+          <select
+            name="occupation"
+            className="c-input flex-1 cursor-pointer appearance-none"
+          >
+            {["chef", "developer"].map((occupation, index) => (
+              <option
+                value={occupation}
+                key={index}
+              >
+                {occupation}
+              </option>
+            ))}
+          </select>
+        </div>
+      </Label>
     </FormWrapper>
   );
-};
-
-NameOccupation.propTypes = {
-  fName: string.isRequired,
-  surname: string.isRequired,
-  updateFields: func.isRequired,
 };
 
 export default NameOccupation;
