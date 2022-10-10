@@ -83,13 +83,6 @@ const Stepper = () => {
           )}
 
           {isLastStep ? <FinishBtn type="submit" /> : <ForwardBtn type="submit" />}
-
-          {/* <button
-            type="submit"
-            className="border border-white p-2"
-          >
-            {isLastStep ? "finish" : "next"}
-          </button> */}
         </div>
       </form>
     </div>

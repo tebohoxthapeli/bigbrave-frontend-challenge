@@ -1,6 +1,7 @@
 import React from "react";
 
 import Stepper from "./components/Stepper";
+import Person from "./components/Person";
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       </h1>
 
       <Stepper />
+      <Person />
     </div>
   );
 };

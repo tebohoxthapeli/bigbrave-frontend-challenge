@@ -30,7 +30,7 @@ const NameOccupation = ({ fName, surname, updateFields }) => {
             name="occupation"
             className="c-user-details-input flex-1 cursor-pointer appearance-none"
           >
-            {["chef", "developer"].map((occupation, index) => (
+            {["chef", "developer", "social media influencer", "yogee"].map((occupation, index) => (
               <option
                 value={occupation}
                 key={index}
