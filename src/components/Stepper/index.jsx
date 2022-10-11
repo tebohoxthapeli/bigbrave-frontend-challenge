@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import GenderDOBForm from "../forms/GenderDOB";
 import NameOccupationForm from "../forms/NameOccupation";
@@ -7,47 +7,19 @@ import FavouriteColourForm from "../forms/FavouriteColour";
 import { useStepper } from "../../hooks/useStepper";
 
 import BackBtn from "./buttons/BackBtn";
-import ForwardBtn from "./buttons/ForwardBtn";
 import FinishBtn from "./buttons/FinishBtn";
+import ForwardBtn from "./buttons/ForwardBtn";
 
-const INITIAL_DATA = {
-  fName: "",
-  surname: "",
-  occupation: "",
-  gender: "male",
-  dob: new Date("12/31/2004"),
-  favColour: "#f44336",
-};
+import { useDataLayerValue } from "../../context/DataLayer";
 
 const Stepper = () => {
-  const [data, setData] = useState(INITIAL_DATA);
-
-  const updateFields = (fields) => {
-    setData((prev) => {
-      return { ...prev, ...fields };
-    });
-  };
-
+  const dispatch = useDataLayerValue()[1];
   // below excluded numOfSteps, currentStepIndex
 
   const { step, isFirstStep, back, next, isLastStep } = useStepper([
-    <NameOccupationForm
-      key="nameOccupationForm"
-      {...data}
-      updateFields={updateFields}
-    />,
-
-    <GenderDOBForm
-      key="genderDOBForm"
-      {...data}
-      updateFields={updateFields}
-    />,
-
-    <FavouriteColourForm
-      {...data}
-      updateFields={updateFields}
-      key="favouriteColorForm"
-    />,
+    <NameOccupationForm key="nameOccupationForm" />,
+    <GenderDOBForm key="genderDOBForm" />,
+    <FavouriteColourForm key="favouriteColorForm" />,
   ]);
 
   const onSubmit = (e) => {
@@ -57,7 +29,9 @@ const Stepper = () => {
       return next();
     }
 
-    alert("Success");
+    dispatch({ type: "set_done" });
+
+    // alert("Success");
   };
 
   return (
@@ -82,7 +56,7 @@ const Stepper = () => {
             />
           )}
 
-          {isLastStep ? <FinishBtn type="submit" /> : <ForwardBtn type="submit" />}
+          {isLastStep ? <FinishBtn /> : <ForwardBtn />}
         </div>
       </form>
     </div>

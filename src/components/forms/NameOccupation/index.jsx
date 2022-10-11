@@ -4,42 +4,31 @@ import React from "react";
 
 import Label from "./Label";
 import TextInput from "./TextInput";
+import Select from "./Select";
 import FormWrapper from "../../../FormWrapper";
 
-const NameOccupation = ({ fName, surname, updateFields }) => {
+// { fName, surname, updateFields }
+
+const NameOccupation = () => {
   return (
     <FormWrapper title="user details">
       <TextInput
-        updateFields={updateFields}
-        labelText="first name"
-        value={fName}
-        name="fName"
         autoFocus
+        name="firstName"
+        labelText="first name"
+        // value={fName}
+        // updateFields={updateFields}
       />
 
       <TextInput
-        updateFields={updateFields}
-        labelText="surname"
-        value={surname}
         name="surname"
+        labelText="surname"
+        // value={surname}
+        // updateFields={updateFields}
       />
 
       <Label labelText="occupation">
-        <div className="relative flex after:pointer-events-none after:absolute after:right-0 after:py-2 after:px-4 after:content-['\25BC'] after:hover:text-yellow-400">
-          <select
-            name="occupation"
-            className="c-user-details-input flex-1 cursor-pointer appearance-none"
-          >
-            {["chef", "developer", "social media influencer", "yogee"].map((occupation, index) => (
-              <option
-                value={occupation}
-                key={index}
-              >
-                {occupation}
-              </option>
-            ))}
-          </select>
-        </div>
+        <Select />
       </Label>
     </FormWrapper>
   );

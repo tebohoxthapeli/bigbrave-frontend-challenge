@@ -11,7 +11,8 @@ const DateButton = ({ value, onClick }, ref) => (
     className="group flex items-center gap-2 rounded-lg border-2 border-transparent bg-yellow-400 py-2 px-4 outline-none hover:border-yellow-400 hover:bg-slate-900 focus:border-yellow-400 focus:bg-slate-900"
   >
     <CakeIcon />
-    <span className="text-lg font-medium text-slate-900 group-hover:text-yellow-400 group-focus:text-yellow-400">
+
+    <span className="font-medium text-slate-900 group-hover:text-yellow-400 group-focus:text-yellow-400">
       {value}
     </span>
   </button>
