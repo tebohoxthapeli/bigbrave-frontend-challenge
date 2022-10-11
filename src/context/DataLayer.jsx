@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 
 import React, { createContext, useContext, useReducer } from "react";
+import { initialState, reducer } from "./reducer";
 
 const DataLayerContext = createContext();
 
-const DataLayer = ({ initialState, reducer, children }) => {
+export const DataLayer = ({ children }) => {
   return (
     <DataLayerContext.Provider value={useReducer(reducer, initialState)}>
       {children}
@@ -12,8 +13,6 @@ const DataLayer = ({ initialState, reducer, children }) => {
   );
 };
 
-const useDataLayerValue = () => {
+export const useDataLayerValue = () => {
   return useContext(DataLayerContext);
 };
-
-export { DataLayer, DataLayerContext, useDataLayerValue };

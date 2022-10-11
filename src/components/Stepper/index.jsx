@@ -1,4 +1,5 @@
 import React from "react";
+import { useSnackbar } from "notistack";
 
 import GenderDOBForm from "../forms/GenderDOB";
 import NameOccupationForm from "../forms/NameOccupation";
@@ -14,6 +15,7 @@ import { useDataLayerValue } from "../../context/DataLayer";
 
 const Stepper = () => {
   const dispatch = useDataLayerValue()[1];
+  const { enqueueSnackbar } = useSnackbar();
   // below excluded numOfSteps, currentStepIndex
 
   const { step, isFirstStep, back, next, isLastStep } = useStepper([
@@ -29,9 +31,11 @@ const Stepper = () => {
       return next();
     }
 
-    dispatch({ type: "set_done" });
+    enqueueSnackbar("Scroll down and take a look at your avatar", {
+      variant: "success",
+    });
 
-    // alert("Success");
+    dispatch({ type: "set_done", payload: true });
   };
 
   return (

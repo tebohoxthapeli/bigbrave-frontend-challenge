@@ -1,6 +1,6 @@
 import React from "react";
 
-import ButtonWrapper from "./ButtonWrapper";
+import ButtonWrapper from "../../ButtonWrapper";
 
 const BackBtn = (props) => {
   return (

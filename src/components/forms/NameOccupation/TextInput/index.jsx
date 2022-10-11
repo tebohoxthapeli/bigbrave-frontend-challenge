@@ -5,8 +5,6 @@ import React from "react";
 import Label from "../Label";
 import { useDataLayerValue } from "../../../../context/DataLayer";
 
-// { updateFields, labelText, value, name, autoFocus }
-
 const TextInput = ({ labelText, name, autoFocus }) => {
   const [state, dispatch] = useDataLayerValue();
 
@@ -20,8 +18,6 @@ const TextInput = ({ labelText, name, autoFocus }) => {
         autoFocus={Boolean(autoFocus)}
         onChange={(e) => dispatch({ type: `set_${name}`, payload: e.target.value })}
         className="c-user-details-input caret-teal-300 selection:bg-yellow-400/25"
-        // value={value}
-        // onChange={(e) => updateFields({ [e.target.name]: e.target.value })}
       />
     </Label>
   );

@@ -21,20 +21,22 @@ const RadioGroup = () => {
           className="flex flex-1 cursor-pointer"
           key={title}
         >
-          <input
-            id={title}
-            type="radio"
-            name="gender"
-            className="peer hidden"
-            checked={state.gender === title}
-            onChange={() => dispatch({ type: "set_gender", payload: title })}
-          />
+          <>
+            <input
+              id={title}
+              type="radio"
+              name="gender"
+              className="peer hidden"
+              checked={state.gender === title}
+              onChange={() => dispatch({ type: "set_gender", payload: title })}
+            />
 
-          <div className="relative mt-4 flex w-full items-center justify-center gap-2 rounded-lg border-2 border-transparent bg-slate-800 p-6 hover:bg-slate-700 peer-checked:border-yellow-400">
-            {state.gender === title && <CheckIcon />}
-            {icon}
-            <h3 className="h-fit text-xl text-slate-300">{title}</h3>
-          </div>
+            <div className="relative mt-4 flex w-full items-center justify-center gap-2 rounded-lg border-2 border-transparent bg-slate-800 p-6 hover:bg-slate-700 peer-checked:border-yellow-400">
+              {state.gender === title && <CheckIcon />}
+              {icon}
+              <h3 className="h-fit text-xl text-slate-300">{title}</h3>
+            </div>
+          </>
         </label>
       ))}
     </div>

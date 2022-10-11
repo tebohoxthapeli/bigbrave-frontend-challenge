@@ -3,7 +3,7 @@
 import React from "react";
 import { CirclePicker } from "react-color";
 
-import FormWrapper from "../../../FormWrapper";
+import FormWrapper from "../../FormWrapper";
 import PaintBrushIcon from "./icons/PaintBrushIcon";
 import SectionWrapper from "../shared/SectionWrapper";
 

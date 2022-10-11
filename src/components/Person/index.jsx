@@ -15,12 +15,14 @@ import Pants from "./Pants";
 import { useDataLayerValue } from "../../context/DataLayer";
 
 const Person = () => {
-  const [state] = useDataLayerValue();
-  const age = new Date().getFullYear() - state.dateOfBirth.getFullYear();
+  const [{ gender, occupation, firstName, surname, favouriteColour, dateOfBirth }] =
+    useDataLayerValue();
+
+  const age = new Date().getFullYear() - dateOfBirth.getFullYear();
 
   let head;
 
-  if (state.gender === "male") {
+  if (gender === "male") {
     if (age >= 50) {
       head = oldMalHead;
     } else {
@@ -36,7 +38,7 @@ const Person = () => {
 
   let torso;
 
-  switch (state.occupation) {
+  switch (occupation) {
     case "chef":
       torso = chef;
       break;
@@ -59,11 +61,11 @@ const Person = () => {
 
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-center">
         <p className="text-lg font-semibold text-yellow-400">
-          Hey, my name is {state.firstName} {state.surname}!
+          Hey, my name is {firstName} {surname}!
         </p>
 
         <p className="font-light text-slate-300">
-          I am a {age}-year-old {state.occupation}
+          I am a {age}-year-old {occupation}
         </p>
       </div>
 
@@ -81,7 +83,7 @@ const Person = () => {
         />
 
         <div className="absolute left-[104px] top-[133px] w-[140px]">
-          <Pants fill={state.favouriteColour} />
+          <Pants fill={favouriteColour} />
         </div>
       </div>
     </div>

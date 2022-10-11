@@ -9,6 +9,10 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   }
 
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
   body {
     @apply bg-gradient-to-r from-indigo-900 to-teal-900;
   }

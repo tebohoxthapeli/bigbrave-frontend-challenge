@@ -16,7 +16,9 @@ const App = () => {
 
       <Stepper />
 
-      {state.done && Object.values(state).every((value) => Boolean(value)) && <Person />}
+      {state.done && Object.values(state).every((value) => Boolean(value) || value === false) && (
+        <Person />
+      )}
     </div>
   );
 };

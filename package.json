@@ -37,7 +37,10 @@
     "semi": true
   },
   "dependencies": {
+    "@emotion/styled": "^11.10.4",
     "formik": "^2.2.9",
+    "js-cookie": "^3.0.1",
+    "notistack": "^2.0.5",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-color": "^2.19.3",

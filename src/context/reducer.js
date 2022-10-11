@@ -1,60 +1,99 @@
-const initialState = {
-  firstName: "",
-  surname: "",
-  occupation: "developer",
-  gender: "male",
-  dateOfBirth: new Date("12/31/2004"),
-  favouriteColour: "#f44336",
-  done: false,
+import Cookies from "js-cookie";
+
+const findCookie = (cookieName, defaultValue) => {
+  const found = Cookies.get(cookieName);
+  return found ? found : defaultValue;
 };
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "set_firstName":
-      return {
-        ...state,
-        firstName: action.payload,
-      };
+export const initialState = {
+  firstName: findCookie("firstName", ""),
+  surname: findCookie("surname", ""),
+  occupation: findCookie("occupation", "developer"),
+  gender: findCookie("gender", "male"),
+  dateOfBirth: new Date("12/31/2004"),
+  favouriteColour: findCookie("favouriteColour", "#f44336"),
+  done: Boolean(findCookie("done", false)),
+};
 
-    case "set_surname":
-      return {
-        ...state,
-        surname: action.payload,
-      };
+const logout = () => {
+  Cookies.remove("firstName");
+  Cookies.remove("surname");
+  Cookies.remove("occupation");
+  Cookies.remove("gender");
+  Cookies.remove("favouriteColour");
+  Cookies.remove("done");
 
-    case "set_occupation":
-      return {
-        ...state,
-        occupation: action.payload,
-      };
+  return { ...initialState };
+};
 
-    case "set_gender":
-      return {
-        ...state,
-        gender: action.payload,
-      };
+export const reducer = (state, { type, payload }) => {
+  switch (type) {
+    case "set_firstName": {
+      Cookies.set("firstName", payload);
 
-    case "set_dateOfBirth":
       return {
         ...state,
-        dateOfBirth: action.payload,
+        firstName: payload,
       };
+    }
 
-    case "set_favouriteColour":
-      return {
-        ...state,
-        favouriteColour: action.payload,
-      };
+    case "set_surname": {
+      Cookies.set("surname", payload);
 
-    case "set_done":
       return {
         ...state,
-        done: true,
+        surname: payload,
       };
+    }
+
+    case "set_occupation": {
+      Cookies.set("occupation", payload);
+
+      return {
+        ...state,
+        occupation: payload,
+      };
+    }
+
+    case "set_gender": {
+      Cookies.set("gender", payload);
+
+      return {
+        ...state,
+        gender: payload,
+      };
+    }
+
+    case "set_dateOfBirth": {
+      return {
+        ...state,
+        dateOfBirth: payload,
+      };
+    }
+
+    case "set_favouriteColour": {
+      Cookies.set("favouriteColour", payload);
+
+      return {
+        ...state,
+        favouriteColour: payload,
+      };
+    }
+
+    case "set_done": {
+      Cookies.set("done", payload);
+
+      return {
+        ...state,
+        done: payload,
+      };
+    }
+
+    case "set_logout": {
+      return logout();
+    }
 
     default:
       return state;
   }
 };
-
-export { reducer, initialState };

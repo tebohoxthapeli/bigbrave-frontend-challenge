@@ -5,7 +5,7 @@ import React from "react";
 import Label from "./Label";
 import TextInput from "./TextInput";
 import Select from "./Select";
-import FormWrapper from "../../../FormWrapper";
+import FormWrapper from "../../FormWrapper";
 
 // { fName, surname, updateFields }
 
