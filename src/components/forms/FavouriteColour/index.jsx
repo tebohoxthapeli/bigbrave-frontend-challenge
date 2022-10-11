@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 
 import React from "react";
+
+// Used react-color because it makes integrating a colour picker into your app extremely simple
 import { CirclePicker } from "react-color";
 
 import FormWrapper from "../../FormWrapper";

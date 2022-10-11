@@ -1,3 +1,5 @@
+/* I used Tailwind CSS for this project because it allows me to style my React components quickly. */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

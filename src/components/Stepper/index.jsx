@@ -1,4 +1,6 @@
 import React from "react";
+
+// notistack handles so much for you. you barely have to do anything to creating amazing notifications
 import { useSnackbar } from "notistack";
 
 import GenderDOBForm from "../forms/GenderDOB";
@@ -16,7 +18,6 @@ import { useDataLayerValue } from "../../context/DataLayer";
 const Stepper = () => {
   const dispatch = useDataLayerValue()[1];
   const { enqueueSnackbar } = useSnackbar();
-  // below excluded numOfSteps, currentStepIndex
 
   const { step, isFirstStep, back, next, isLastStep } = useStepper([
     <NameOccupationForm key="nameOccupationForm" />,
@@ -46,10 +47,6 @@ const Stepper = () => {
         autoCorrect="off"
         className="space-y-6"
       >
-        {/* <div className="absolute top-2 right-2">
-          {currentStepIndex + 1} / {numOfSteps}
-        </div> */}
-
         {step}
 
         <div className="flex justify-end gap-6 text-white">

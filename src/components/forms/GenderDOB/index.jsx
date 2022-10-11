@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 
 import React from "react";
+
+// react-datepicker is very intuitive and has a lot of features.
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
